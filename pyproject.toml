@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matchmaker-grid"
+version = "0.1.0"
+description = "A high-throughput computing lab: resource-ad expressions, symmetric matchmaking, fair-share negotiation and DAG workflows on local worker processes."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Paolo Gallo" }]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+matchmaker = "matchmaker.cli:matchmaker_main"
+matchmaker-grid = "matchmaker.cli:grid_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF012", "SIM905"]
